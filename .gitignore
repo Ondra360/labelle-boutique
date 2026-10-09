@@ -1,0 +1,4 @@
+# Local operating-system files and deployment archives
+.DS_Store
+Thumbs.db
+*.tar.gz
