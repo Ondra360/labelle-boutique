@@ -831,6 +831,9 @@ img {
   grid-template-columns: 0.8fr 1.2fr;
   gap: clamp(45px, 9vw, 145px);
 }
+.contact .shell--email {
+  grid-template-columns: minmax(0, 1fr);
+}
 .contact .display {
   font-size: clamp(3.25rem, 5.6vw, 6.2rem);
 }
@@ -913,6 +916,25 @@ textarea {
 .contact__direct a {
   width: fit-content;
   border-bottom: 1px solid rgba(23, 22, 21, 0.32);
+}
+.contact__intro--email {
+  text-align: center;
+}
+.contact__email {
+  display: inline-block;
+  margin-top: 28px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold-dark);
+  color: var(--forest);
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  letter-spacing: 0.03em;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+.contact__email:hover {
+  border-color: var(--forest);
+  color: var(--wine);
 }
 
 /* Footer & utilities */
