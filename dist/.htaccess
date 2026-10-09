@@ -1,0 +1,9 @@
+# FORPSI Linux / Apache: canonical HTTPS address for the replacement static site.
+# Before uploading, back up any existing .htaccess file from /www/.
+Options -Indexes
+
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off [NC,OR]
+RewriteCond %{HTTP_HOST} !^labelleboutique\.cz$ [NC]
+RewriteRule (.*) https://labelleboutique.cz%{REQUEST_URI} [L,R=301,QSA]

@@ -9,8 +9,10 @@
   --gold: #b89652;
   --gold-pale: #e4d4aa;
   --line: rgba(11, 27, 23, 0.16);
-  --serif: "Cormorant Garamond", Georgia, serif;
-  --sans: "Manrope", Arial, sans-serif;
+  --serif: Baskerville, "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   --header: 86px;
 }
 * {
@@ -965,41 +967,6 @@ textarea {
 .footer__bottom a:hover {
   color: white;
 }
-.cookie {
-  position: fixed;
-  z-index: 50;
-  right: 20px;
-  bottom: 20px;
-  display: none;
-  width: min(415px, calc(100vw - 40px));
-  align-items: center;
-  gap: 18px;
-  padding: 17px;
-  color: white;
-  background: var(--ink);
-  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.25);
-}
-.cookie.is-visible {
-  display: flex;
-}
-.cookie p {
-  flex: 1;
-  margin: 0;
-  color: #ded7cf;
-  font-size: 0.7rem;
-  line-height: 1.45;
-}
-.cookie button {
-  padding: 10px 12px;
-  border: 1px solid white;
-  color: var(--ink);
-  background: white;
-  cursor: pointer;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
 .lightbox {
   position: fixed;
   z-index: 70;
@@ -1229,11 +1196,6 @@ textarea {
   }
   .footer__bottom {
     flex-direction: column;
-  }
-  .cookie.is-visible {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 14px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1630,6 +1592,67 @@ body {
 .map-card {
   outline: 1px solid rgba(184, 150, 82, 0.5);
   outline-offset: 12px;
+}
+
+.map-consent {
+  display: grid;
+  min-height: 605px;
+  place-items: center;
+  padding: clamp(24px, 5vw, 64px);
+  text-align: center;
+}
+
+.map-consent__inner {
+  max-width: 410px;
+}
+
+.map-consent__inner p {
+  margin: 14px 0 24px;
+  color: #425047;
+  line-height: 1.65;
+}
+
+.map-card iframe[hidden] {
+  display: none;
+}
+
+.form-privacy {
+  grid-column: 1 / -1;
+  margin: 2px 0 0;
+  color: #566157;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.form-privacy a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-draft {
+  padding-top: clamp(28px, 4vw, 52px);
+  padding-bottom: clamp(28px, 4vw, 52px);
+  background: var(--gold-pale);
+}
+
+.legal-draft p {
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--ink);
+  font-size: clamp(0.92rem, 1.4vw, 1.06rem);
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .map-consent {
+    min-height: 470px;
+  }
+}
+
+@media (max-width: 560px) {
+  .map-consent {
+    min-height: 405px;
+  }
 }
 
 .contact__notice {

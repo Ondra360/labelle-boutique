@@ -59,15 +59,16 @@
       .querySelectorAll("a")
       .forEach((link) => link.addEventListener("click", () => setMenu(false)));
 
-  const cookie = document.querySelector("[data-cookie]");
-  const cookieButton = document.querySelector("[data-cookie-accept]");
-  if (cookie && !localStorage.getItem("labelle-cookie-ack"))
-    cookie.classList.add("is-visible");
-  if (cookieButton)
-    cookieButton.addEventListener("click", () => {
-      localStorage.setItem("labelle-cookie-ack", "true");
-      cookie?.classList.remove("is-visible");
+  document.querySelectorAll("[data-map-consent]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".map-card");
+      const frame = card?.querySelector("iframe[data-map-src]");
+      if (!card || !frame) return;
+      frame.src = frame.dataset.mapSrc || "";
+      frame.hidden = false;
+      card.querySelector(".map-consent")?.remove();
     });
+  });
 
   const lightbox = document.querySelector("[data-lightbox]");
   const lightboxImage = document.querySelector("[data-lightbox-image]");
@@ -91,25 +92,6 @@
   lightbox?.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
-
-  const contactForm = document.querySelector("[data-contact-form]");
-  if (
-    contactForm &&
-    new URLSearchParams(window.location.search).get("odeslano") === "1"
-  ) {
-    const status = contactForm.querySelector("[data-form-status]");
-    if (status) status.textContent = "Děkujeme — vaše zpráva byla odeslána.";
-  }
-
-  const clubForm = document.querySelector("[data-club-form]");
-  if (
-    clubForm &&
-    new URLSearchParams(window.location.search).get("sleva") === "1"
-  ) {
-    const status = document.querySelector("[data-club-status]");
-    if (status)
-      status.textContent = "Děkujeme — kód BELLE10 jsme poslali na váš e-mail.";
-  }
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {

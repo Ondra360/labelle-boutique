@@ -9,32 +9,20 @@
     />
     <meta name="theme-color" content="#0b1b17" />
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link
-      rel="canonical"
-      href="https://ondra360.github.io/labelle-boutique/navsteva"
-    />
+    <link rel="canonical" href="https://labelleboutique.cz/navsteva/" />
     <meta property="og:title" content="Návštěva butiku | La Belle Boutique" />
     <meta
       property="og:description"
       content="Navštivte La Belle Boutique v centru Prahy."
     />
     <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://ondra360.github.io/labelle-boutique/navsteva"
-    />
+    <meta property="og:url" content="https://labelleboutique.cz/navsteva/" />
     <meta
       property="og:image"
-      content="https://ondra360.github.io/labelle-boutique/assets/gallery-3.jpg"
+      content="https://labelleboutique.cz/assets/gallery-3.jpg"
     />
     <meta name="twitter:card" content="summary_large_image" />
     <title>Návštěva butiku | La Belle Boutique</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="../assets/site.css" />
   </head>
   <body>
@@ -104,11 +92,25 @@
       </section>
       <section class="shell visit-layout">
         <div class="map-card">
+          <div class="map-consent">
+            <div class="map-consent__inner">
+              <p class="eyebrow">Mapa Google</p>
+              <h2 class="display">Otevřít<br /><i>mapu butiku.</i></h2>
+              <p>
+                Po kliknutí se načte mapa od Googlu. Tím Google získá technické
+                údaje včetně vaší IP adresy.
+              </p>
+              <button class="button" type="button" data-map-consent>
+                Načíst mapu <span class="arrow">→</span>
+              </button>
+            </div>
+          </div>
           <iframe
             title="Mapa: La Belle Boutique, Panská 891/5 Praha 1"
-            src="https://www.google.com/maps?q=Pansk%C3%A1%20891%2F5%2C%20110%2000%20Praha%201&output=embed"
+            data-map-src="https://www.google.com/maps?q=Pansk%C3%A1%20891%2F5%2C%20110%2000%20Praha%201&output=embed"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            hidden
           ></iframe>
         </div>
         <div class="visit-copy">
@@ -174,8 +176,8 @@
           <span class="footer__heading">Butik</span>
           <div class="footer__links">
             <a href="../o-butiku/">O butiku</a
-            ><a href="../navsteva/">Návštěva</a
-            ><a href="../kontakt/">Kontakt</a>
+            ><a href="../navsteva/">Návštěva</a><a href="../kontakt/">Kontakt</a
+            ><a href="../ochrana-soukromi/">Soukromí</a>
           </div>
         </div>
         <div>
@@ -200,13 +202,6 @@
         ><span>Panská 891/5 · Praha 1</span>
       </div>
     </footer>
-    <aside class="cookie" data-cookie aria-label="Cookies">
-      <p>
-        Používáme pouze nezbytné technologie pro správné fungování této
-        prezentace.
-      </p>
-      <button type="button" data-cookie-accept>Rozumím</button>
-    </aside>
     <script src="../assets/site.js"></script>
   </body>
 </html>

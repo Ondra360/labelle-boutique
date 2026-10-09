@@ -19,10 +19,18 @@ Potom otevři `http://127.0.0.1:4173`.
 ## Struktura
 
 - `dist/index.html` — úvodní stránka
-- `dist/o-butiku.html` — o butiku
-- `dist/navsteva.html` — návštěva a mapa
-- `dist/kontakt.html` — kontaktní formulář
+- `dist/o-butiku/index.html` — o butiku
+- `dist/navsteva/index.html` — návštěva a mapa
+- `dist/kontakt/index.html` — kontaktní formulář
+- `dist/ochrana-soukromi/index.html` — pracovní návrh ochrany osobních údajů
 - `dist/robots.txt` a `dist/sitemap.xml` — podklady pro vyhledávače
+
+## Stav formulářů a ochrany údajů
+
+Před publikováním změn ověř s provozovatelem správce údajů, příjemce
+kontaktního formuláře a dobu uchování zpráv. Aktuální pracovní návrh nesbírá
+e-maily pro marketing a nerozesílá newsletter. Podrobný checklist je v
+dodaném souboru `README-AUDIT.md`.
 
 ## GitHub
 
@@ -30,7 +38,7 @@ Zdrojový kód je uložený ve veřejném repozitáři:
 
 https://github.com/Ondra360/labelle-boutique
 
-Po úpravě souborů ve VS Code odešli změny na GitHub takto:
+Po ověření a výslovném rozhodnutí publikovat lze změny odeslat na GitHub takto:
 
 ```powershell
 git add .
