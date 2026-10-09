@@ -72,23 +72,29 @@
 
   const lightbox = document.querySelector("[data-lightbox]");
   const lightboxImage = document.querySelector("[data-lightbox-image]");
+  const lightboxClose = document.querySelector("[data-lightbox-close]");
+  let lastFocusedElement = null;
   const closeLightbox = () => {
     if (!lightbox || !lightboxImage) return;
     lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
     lightboxImage.src = "";
+    if (lastFocusedElement?.isConnected) lastFocusedElement.focus();
+    lastFocusedElement = null;
   };
   document.querySelectorAll("[data-gallery-image]").forEach((button) =>
     button.addEventListener("click", () => {
       const image = button.querySelector("img");
       if (!image || !lightbox || !lightboxImage) return;
+      lastFocusedElement = document.activeElement;
       lightboxImage.src = button.dataset.galleryImage || image.src;
       lightboxImage.alt = image.alt;
       lightbox.classList.add("is-open");
+      lightbox.setAttribute("aria-hidden", "false");
+      requestAnimationFrame(() => lightboxClose?.focus());
     }),
   );
-  document
-    .querySelector("[data-lightbox-close]")
-    ?.addEventListener("click", closeLightbox);
+  lightboxClose?.addEventListener("click", closeLightbox);
   lightbox?.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
@@ -97,6 +103,10 @@
     if (event.key === "Escape") {
       closeLightbox();
       setMenu(false);
+    }
+    if (event.key === "Tab" && lightbox?.classList.contains("is-open")) {
+      event.preventDefault();
+      lightboxClose?.focus();
     }
   });
   document.querySelectorAll("[data-year]").forEach((node) => {
