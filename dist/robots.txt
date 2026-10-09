@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://labelle-boutique-prague-2026.bloomy-basil-9958.chatgpt.site/sitemap.xml

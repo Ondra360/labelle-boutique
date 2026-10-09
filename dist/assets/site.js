@@ -1,4 +1,8 @@
 (() => {
+  if (window.location.protocol === "http:" && !["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+    window.location.replace("https:" + window.location.href.slice(window.location.protocol.length));
+    return;
+  }
   const header = document.querySelector(".site-header");
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-mobile-menu]");
@@ -42,23 +46,11 @@
   document.querySelector("[data-lightbox-close]")?.addEventListener("click", closeLightbox);
   lightbox?.addEventListener("click", (event) => { if (event.target === lightbox) closeLightbox(); });
 
-  document.querySelector("[data-contact-form]")?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const status = form.querySelector("[data-form-status]");
-    const name = form.elements.name.value.trim();
-    const email = form.elements.email.value.trim();
-    const topic = form.elements.topic.value.trim();
-    const message = form.elements.message.value.trim();
-    if (!name || !message || !/^\S+@\S+\.\S+$/.test(email)) {
-      if (status) status.textContent = "Vyplňte prosím jméno, platný e-mail a zprávu.";
-      return;
-    }
-    if (status) status.textContent = "Otevíráme e-mailovou zprávu pro La Belle Boutique.";
-    const subject = topic ? "La Belle Boutique — " + topic : "Zpráva z webu La Belle Boutique";
-    const body = "Jméno: " + name + "\nE-mail: " + email + "\n" + (topic ? "Téma: " + topic + "\n" : "") + "\nZpráva:\n" + message;
-    window.location.href = "mailto:info@labelleboutique.cz?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  });
+  const contactForm = document.querySelector("[data-contact-form]");
+  if (contactForm && new URLSearchParams(window.location.search).get("odeslano") === "1") {
+    const status = contactForm.querySelector("[data-form-status]");
+    if (status) status.textContent = "Děkujeme — vaše zpráva byla odeslána.";
+  }
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
