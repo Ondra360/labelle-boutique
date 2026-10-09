@@ -52,6 +52,12 @@
     if (status) status.textContent = "Děkujeme — vaše zpráva byla odeslána.";
   }
 
+  const clubForm = document.querySelector("[data-club-form]");
+  if (clubForm && new URLSearchParams(window.location.search).get("sleva") === "1") {
+    const status = document.querySelector("[data-club-status]");
+    if (status) status.textContent = "Děkujeme — kód BELLE10 jsme poslali na váš e-mail.";
+  }
+
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeLightbox();
