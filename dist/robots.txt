@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://labelleboutique.cz/sitemap.xml
+Sitemap: https://ondra360.github.io/labelle-boutique/sitemap.xml
