@@ -1,8 +1,8 @@
 # La Belle Boutique — web
 
-Statický, vícestránkový web butiku La Belle Boutique. Publikovaná verze běží na:
+Statický, vícestránkový web butiku La Belle Boutique. Bezplatná veřejná verze běží na:
 
-https://labelle-boutique-prague-2026.bloomy-basil-9958.chatgpt.site
+https://ondra360.github.io/labelle-boutique/
 
 ## Práce ve VS Code
 
@@ -38,12 +38,12 @@ git commit -m "Popis změny"
 git push
 ```
 
-Web nyní hostuje služba Sites; GitHub bude záloha a verzování zdrojového kódu. Pro vlastní doménu není nutné používat GitHub Pages.
+GitHub Pages web automaticky publikuje po každém `git push` do větve `main`.
 
 ## Google Search Console
 
-Pro web se používá Google Search Console, ne Google Play Console (ta je určena pro aplikace pro Android). Po zprovoznění domény přidej do Search Console vlastnost domény `labelleboutique.cz`, ověř ji DNS záznamem a odešli sitemapu:
+Pro web se používá Google Search Console, ne Google Play Console (ta je určena pro aplikace pro Android). Bez vlastní domény lze přidat službu s předponou adresy URL a odeslat sitemapu:
 
 ```text
-https://www.labelleboutique.cz/sitemap.xml
+https://ondra360.github.io/labelle-boutique/sitemap.xml
 ```
