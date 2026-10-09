@@ -26,11 +26,16 @@ Potom otevři `http://127.0.0.1:4173`.
 
 ## GitHub
 
-Po přihlášení na GitHub vytvoř prázdný repozitář bez README a bez `.gitignore`, například `labelle-boutique`. Pak ve VS Code terminálu spusť:
+Zdrojový kód je uložený ve veřejném repozitáři:
+
+https://github.com/Ondra360/labelle-boutique
+
+Po úpravě souborů ve VS Code odešli změny na GitHub takto:
 
 ```powershell
-git remote add origin https://github.com/TVE_UZIVATELSKE_JMENO/labelle-boutique.git
-git push -u origin main
+git add .
+git commit -m "Popis změny"
+git push
 ```
 
 Web nyní hostuje služba Sites; GitHub bude záloha a verzování zdrojového kódu. Pro vlastní doménu není nutné používat GitHub Pages.
