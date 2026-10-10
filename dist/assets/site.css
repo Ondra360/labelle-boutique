@@ -2029,8 +2029,68 @@ body {
   text-transform: uppercase;
 }
 
+.hero__brand-strip li:nth-child(even) {
+  background: rgba(255, 253, 248, 0.025);
+}
+
 .hero__brand-strip li:last-child {
   border-right: 0;
+}
+
+.brand-mark span {
+  display: block;
+}
+
+.brand-mark--chanel span,
+.brand-mark--givenchy span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 800;
+}
+
+.brand-mark--chanel span {
+  letter-spacing: 0.24em;
+}
+
+.brand-mark--hermes,
+.brand-mark--dior,
+.brand-mark--ricci,
+.brand-mark--valentino {
+  font-family: var(--serif);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+.brand-mark--hermes span,
+.brand-mark--dior span,
+.brand-mark--valentino span {
+  font-size: 1.42em;
+}
+
+.brand-mark--ricci span {
+  font-size: 1.35em;
+  font-style: italic;
+}
+
+.brand-mark--givenchy span {
+  letter-spacing: 0.18em;
+}
+
+.brand-mark--ysl {
+  display: flex !important;
+  flex-direction: column;
+  gap: 3px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.67em !important;
+  letter-spacing: 0.1em !important;
+  line-height: 1.05;
+}
+
+.brand-mark--ysl small {
+  color: var(--gold-pale);
+  font-size: 0.74em;
+  font-weight: 600;
+  letter-spacing: 0.34em;
 }
 
 @media (max-width: 860px) {
@@ -2049,6 +2109,10 @@ body {
     min-height: 64px;
     padding: 12px 19px;
     font-size: 0.61rem;
+  }
+
+  .brand-mark--ysl {
+    font-size: 0.57rem !important;
   }
 }
 
