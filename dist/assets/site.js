@@ -13,12 +13,24 @@
   const header = document.querySelector(".site-header");
   const toggle = document.querySelector("[data-menu-toggle]");
   const menu = document.querySelector("[data-mobile-menu]");
-  const setMenu = (open) => {
+  const menuCopy = document.documentElement.lang.startsWith("en")
+    ? { open: "Open menu", close: "Close menu" }
+    : { open: "Otevřít menu", close: "Zavřít menu" };
+  let menuTrigger = null;
+  const setMenu = (open, restoreFocus = false) => {
     if (!toggle || !menu) return;
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? menuCopy.close : menuCopy.open);
     menu.classList.toggle("is-open", open);
     menu.setAttribute("aria-hidden", String(!open));
-    document.body.classList.toggle("menu-open", open);
+    menu.inert = !open;
+    if (open) {
+      menuTrigger = document.activeElement;
+      requestAnimationFrame(() => menu.querySelector("a")?.focus());
+    } else if (restoreFocus && menuTrigger?.isConnected) {
+      menuTrigger.focus();
+    }
+    if (!open) menuTrigger = null;
   };
   if (header) {
     const updateHeader = () =>
@@ -50,10 +62,26 @@
   } else {
     revealTargets.forEach((element) => element.classList.add("is-revealed"));
   }
-  if (toggle)
+  if (toggle && menu) {
+    setMenu(false);
     toggle.addEventListener("click", () =>
       setMenu(toggle.getAttribute("aria-expanded") !== "true"),
     );
+    document.addEventListener("click", (event) => {
+      if (
+        toggle.getAttribute("aria-expanded") === "true" &&
+        !menu.contains(event.target) &&
+        !toggle.contains(event.target)
+      ) {
+        setMenu(false, true);
+      }
+    });
+    window
+      .matchMedia("(min-width: 861px)")
+      .addEventListener("change", (event) => {
+        if (event.matches) setMenu(false);
+      });
+  }
   if (menu)
     menu
       .querySelectorAll("a")
@@ -102,7 +130,10 @@
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       closeLightbox();
-      setMenu(false);
+      if (toggle?.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        setMenu(false, true);
+      }
     }
     if (event.key === "Tab" && lightbox?.classList.contains("is-open")) {
       event.preventDefault();
