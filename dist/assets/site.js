@@ -40,6 +40,22 @@
     window.addEventListener("scroll", updateHeader, { passive: true });
   }
 
+  document.querySelectorAll("[data-hero-video]").forEach((video) => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePlayback = () => {
+      if (motionPreference.matches) {
+        video.pause();
+        return;
+      }
+      const playAttempt = video.play();
+      playAttempt?.catch(() => {
+        // The poster remains visible when a browser blocks muted autoplay.
+      });
+    };
+    updatePlayback();
+    motionPreference.addEventListener("change", updatePlayback);
+  });
+
   const revealTargets = document.querySelectorAll(
     ".quote, .feature, .home-grid, .gallery-teaser, .home-cta .shell, .club__inner, .page-hero__content, .intro, .editorial, .brands .shell, .gallery-head, .gallery, .visit-layout, .contact .shell",
   );
