@@ -24,6 +24,7 @@
     menu.classList.toggle("is-open", open);
     menu.setAttribute("aria-hidden", String(!open));
     menu.inert = !open;
+    document.body.classList.toggle("menu-open", open);
     if (open) {
       menuTrigger = document.activeElement;
       window.setTimeout(() => menu.querySelector("a")?.focus(), 0);
