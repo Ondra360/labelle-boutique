@@ -26,7 +26,7 @@
     menu.inert = !open;
     if (open) {
       menuTrigger = document.activeElement;
-      requestAnimationFrame(() => menu.querySelector("a")?.focus());
+      window.setTimeout(() => menu.querySelector("a")?.focus(), 0);
     } else if (restoreFocus && menuTrigger?.isConnected) {
       menuTrigger.focus();
     }
