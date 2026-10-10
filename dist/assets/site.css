@@ -1996,45 +1996,75 @@ body {
   z-index: 2;
 }
 
-.hero__brand-strip {
+.brand-orbit {
+  overflow: hidden;
+  padding: clamp(72px, 10vw, 132px) 24px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(184, 150, 82, 0.15), transparent 43%),
+    #061711;
+}
+
+.brand-orbit__stage {
+  --orbit-radius: clamp(138px, 22vw, 235px);
+  position: relative;
+  width: min(100%, 580px);
+  aspect-ratio: 1;
+  margin: auto;
+}
+
+.brand-orbit__stage::before,
+.brand-orbit__stage::after {
   position: absolute;
-  z-index: 2;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(228, 212, 170, 0.32);
+  border-radius: 50%;
+  content: "";
+}
+
+.brand-orbit__stage::before {
+  width: calc(var(--orbit-radius) * 2);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+
+.brand-orbit__stage::after {
+  width: 7px;
+  aspect-ratio: 1;
+  background: var(--gold);
+  box-shadow: 0 0 0 13px rgba(228, 212, 170, 0.08);
+  transform: translate(-50%, -50%);
+}
+
+.brand-orbit__ring {
+  position: absolute;
+  inset: 0;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  border-top: 1px solid rgba(228, 212, 170, 0.42);
-  background: rgba(6, 23, 17, 0.67);
-  backdrop-filter: blur(12px);
   list-style: none;
+  animation: brand-orbit-spin 42s linear infinite;
 }
 
-.hero__brand-strip li {
+.brand-orbit__ring .brand-mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: grid;
-  min-height: 78px;
+  min-width: max-content;
   align-items: center;
-  justify-content: center;
-  padding: 14px 12px;
-  color: rgba(255, 253, 248, 0.9);
-  border-right: 1px solid rgba(228, 212, 170, 0.24);
-  font-size: clamp(0.62rem, 0.78vw, 0.78rem);
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  line-height: 1.3;
+  justify-items: center;
+  color: rgba(255, 253, 248, 0.92);
+  font-size: clamp(0.69rem, 1.05vw, 0.94rem);
+  letter-spacing: 0.12em;
+  line-height: 1.05;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: 0 5px 24px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--angle)));
 }
 
-.hero__brand-strip li:nth-child(even) {
-  background: rgba(255, 253, 248, 0.025);
-}
-
-.hero__brand-strip li:last-child {
-  border-right: 0;
+.brand-orbit__ring .brand-mark > * {
+  animation: brand-orbit-counter 42s linear infinite reverse;
 }
 
 .brand-mark span {
@@ -2064,11 +2094,11 @@ body {
 .brand-mark--hermes span,
 .brand-mark--dior span,
 .brand-mark--valentino span {
-  font-size: 1.42em;
+  font-size: 1.55em;
 }
 
 .brand-mark--ricci span {
-  font-size: 1.35em;
+  font-size: 1.4em;
   font-style: italic;
 }
 
@@ -2076,14 +2106,13 @@ body {
   letter-spacing: 0.18em;
 }
 
-.brand-mark--ysl {
-  display: flex !important;
+.brand-orbit__ring .brand-mark--ysl {
+  display: flex;
   flex-direction: column;
   gap: 3px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.67em !important;
-  letter-spacing: 0.1em !important;
-  line-height: 1.05;
+  font-size: 0.62em;
+  letter-spacing: 0.1em;
 }
 
 .brand-mark--ysl small {
@@ -2093,26 +2122,34 @@ body {
   letter-spacing: 0.34em;
 }
 
-@media (max-width: 860px) {
-  .hero__brand-strip {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
+@keyframes brand-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes brand-orbit-counter {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-orbit {
+    padding-top: 68px;
+    padding-bottom: 68px;
   }
 
-  .hero__brand-strip::-webkit-scrollbar {
-    display: none;
+  .brand-orbit__stage {
+    --orbit-radius: min(35vw, 156px);
   }
 
-  .hero__brand-strip li {
-    min-width: max-content;
-    min-height: 64px;
-    padding: 12px 19px;
+  .brand-orbit__ring .brand-mark {
     font-size: 0.61rem;
   }
 
-  .brand-mark--ysl {
-    font-size: 0.57rem !important;
+  .brand-orbit__ring .brand-mark--ysl {
+    font-size: 0.5rem;
   }
 }
 
@@ -2120,5 +2157,10 @@ body {
   .js [data-reveal] {
     opacity: 1;
     transform: none;
+  }
+
+  .brand-orbit__ring,
+  .brand-orbit__ring .brand-mark > * {
+    animation: none;
   }
 }
