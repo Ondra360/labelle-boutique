@@ -1996,75 +1996,48 @@ body {
   z-index: 2;
 }
 
-.brand-orbit {
+.brand-marquee {
   overflow: hidden;
-  padding: clamp(72px, 10vw, 132px) 24px;
+  padding: clamp(54px, 7vw, 90px) 0;
   background:
-    radial-gradient(circle at 50% 50%, rgba(184, 150, 82, 0.15), transparent 43%),
+    radial-gradient(circle at 50% 50%, rgba(184, 150, 82, 0.12), transparent 46%),
     #061711;
 }
 
-.brand-orbit__stage {
-  --orbit-radius: clamp(138px, 22vw, 235px);
-  position: relative;
-  width: min(100%, 580px);
-  aspect-ratio: 1;
-  margin: auto;
+.brand-marquee__viewport {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
 }
 
-.brand-orbit__stage::before,
-.brand-orbit__stage::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 1px solid rgba(228, 212, 170, 0.32);
-  border-radius: 50%;
-  content: "";
+.brand-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: brand-marquee-scroll 34s linear infinite;
 }
 
-.brand-orbit__stage::before {
-  width: calc(var(--orbit-radius) * 2);
-  aspect-ratio: 1;
-  transform: translate(-50%, -50%);
-}
-
-.brand-orbit__stage::after {
-  width: 7px;
-  aspect-ratio: 1;
-  background: var(--gold);
-  box-shadow: 0 0 0 13px rgba(228, 212, 170, 0.08);
-  transform: translate(-50%, -50%);
-}
-
-.brand-orbit__ring {
-  position: absolute;
-  inset: 0;
+.brand-marquee__list {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: clamp(38px, 6vw, 110px);
   margin: 0;
-  padding: 0;
+  padding: 0 clamp(19px, 4vw, 72px);
   list-style: none;
-  animation: brand-orbit-spin 42s linear infinite;
 }
 
-.brand-orbit__ring .brand-mark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+.brand-marquee__list .brand-mark {
   display: grid;
   min-width: max-content;
   align-items: center;
   justify-items: center;
   color: rgba(255, 253, 248, 0.92);
-  font-size: clamp(0.69rem, 1.05vw, 0.94rem);
+  font-size: clamp(0.78rem, 1.25vw, 1.12rem);
   letter-spacing: 0.12em;
   line-height: 1.05;
   text-align: center;
   text-transform: uppercase;
   text-shadow: 0 5px 24px rgba(0, 0, 0, 0.55);
-  transform: translate(-50%, -50%) rotate(var(--angle)) translateY(calc(-1 * var(--orbit-radius))) rotate(calc(-1 * var(--angle)));
-}
-
-.brand-orbit__ring .brand-mark > * {
-  animation: brand-orbit-counter 42s linear infinite reverse;
 }
 
 .brand-mark span {
@@ -2106,12 +2079,12 @@ body {
   letter-spacing: 0.18em;
 }
 
-.brand-orbit__ring .brand-mark--ysl {
+.brand-marquee__list .brand-mark--ysl {
   display: flex;
   flex-direction: column;
   gap: 3px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.62em;
+  font-size: 0.67em;
   letter-spacing: 0.1em;
 }
 
@@ -2122,34 +2095,32 @@ body {
   letter-spacing: 0.34em;
 }
 
-@keyframes brand-orbit-spin {
+@keyframes brand-marquee-scroll {
   to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes brand-orbit-counter {
-  to {
-    transform: rotate(-360deg);
+    transform: translateX(-50%);
   }
 }
 
 @media (max-width: 520px) {
-  .brand-orbit {
-    padding-top: 68px;
-    padding-bottom: 68px;
+  .brand-marquee {
+    padding: 42px 0;
   }
 
-  .brand-orbit__stage {
-    --orbit-radius: min(35vw, 156px);
+  .brand-marquee__track {
+    animation-duration: 24s;
   }
 
-  .brand-orbit__ring .brand-mark {
-    font-size: 0.61rem;
+  .brand-marquee__list {
+    gap: 38px;
+    padding: 0 19px;
   }
 
-  .brand-orbit__ring .brand-mark--ysl {
-    font-size: 0.5rem;
+  .brand-marquee__list .brand-mark {
+    font-size: 0.72rem;
+  }
+
+  .brand-marquee__list .brand-mark--ysl {
+    font-size: 0.54rem;
   }
 }
 
@@ -2159,8 +2130,7 @@ body {
     transform: none;
   }
 
-  .brand-orbit__ring,
-  .brand-orbit__ring .brand-mark > * {
+  .brand-marquee__track {
     animation: none;
   }
 }
