@@ -110,7 +110,7 @@ img {
 .display {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(3rem, 6.2vw, 6.75rem);
+  font-size: 70px;
   font-weight: 400;
   letter-spacing: -0.052em;
   line-height: 0.92;
@@ -676,7 +676,7 @@ img {
   max-width: 720px;
 }
 .page-hero .eyebrow {
-  color: #f0decd;
+  color: #cfbfb1;
 }
 .page-hero .display {
   font-size: clamp(3.7rem, 7vw, 7.8rem);
@@ -715,9 +715,7 @@ img {
   height: 100%;
   object-fit: cover;
 }
-.editorial__copy {
-  padding: 28px 0;
-}
+.editorial__copy { padding: 20px 0; }
 .editorial__copy .display {
   font-size: clamp(3rem, 5vw, 5.8rem);
 }
@@ -1091,7 +1089,7 @@ textarea {
   font-size: 2rem;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   :root {
     --header: 72px;
   }
@@ -1258,7 +1256,7 @@ textarea {
     grid-column: 1/-1;
   }
 }
-@media (min-width: 861px) {
+@media (min-width: 1025px) {
   .mobile-menu {
     display: none;
   }
@@ -1413,14 +1411,14 @@ body {
 }
 
 .button--white {
-  border-color: rgba(228, 212, 170, 0.76);
-  color: #fffdf8;
-  background: rgba(7, 30, 24, 0.22);
+  border-color: rgba(123, 104, 46, 0.76);
+  color: #f6f5f2;
+  background: rgba(2, 0, 0, 0.8);
 }
 
 .button--white:hover {
   border-color: var(--gold);
-  color: var(--ink);
+  color: var();
   background: var(--gold-pale);
 }
 
@@ -1450,9 +1448,9 @@ body {
 }
 
 .nav__action {
-  border-color: rgba(228, 212, 170, 0.76);
+  border-color: rgba(73, 53, 4, 0.76);
   color: #fffdf8;
-  background: transparent;
+  background: black;
 }
 
 .nav__action:hover {
@@ -1806,7 +1804,7 @@ body {
   line-height: 1.7;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .map-consent {
     min-height: 470px;
   }
@@ -1891,7 +1889,7 @@ body {
   animation: luxury-line 0.9s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1024px) {
   .mobile-menu {
     border-bottom: 1px solid rgba(228, 212, 170, 0.26);
     background: rgba(6, 23, 17, 0.98);
@@ -1988,7 +1986,7 @@ body {
 }
 
 .hero::after {
-  z-index: 1;
+  display: none;
 }
 
 .hero__content,
@@ -2053,6 +2051,12 @@ body {
 .brand-mark--chanel span {
   letter-spacing: 0.24em;
 }
+.brand-mark--Souvenir span {
+  font-family: var(--serif);
+  font-size: 1.2em;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
 
 .brand-mark--hermes,
 .brand-mark--dior,
@@ -2063,7 +2067,12 @@ body {
   letter-spacing: 0.06em;
   text-transform: none;
 }
-
+.brand-mark--raffaello-rossi span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.20em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
 .brand-mark--hermes span,
 .brand-mark--dior span,
 .brand-mark--valentino span {
@@ -2133,4 +2142,154 @@ body {
   .brand-marquee__track {
     animation: none;
   }
+}
+/* Stažení mezery jen mezi Raffaello Rossi a Souvenir */
+.brand-marquee__list .brand-mark--raffaello-rossi {
+  margin-right: -70px;
+}
+
+.brand-marquee__list .brand-mark--Souvenir {
+  margin-left: -20px;
+  margin-right: 0;
+}
+
+  .whatsapp-button {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    color: #fff;
+    box-shadow: 0 4px 18px #0003;
+    transition: transform 0.2s;
+  }
+
+  .whatsapp-button svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .whatsapp-button:hover {
+    transform: scale(1.08);
+  }
+
+  .whatsapp-button:focus-visible {
+    outline: 3px solid #075e54;
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 560px) {
+    .whatsapp-button {
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-button {
+      transition: none;
+    }
+  }
+
+
+/* Čitelnost a responzivní rozložení. Logo a značky si zachovávají písmo. */
+.display, .quote p, .intro__lead, .mobile-menu > a { font-family: var(--sans); }
+main .display.display { font-size: clamp(2rem, 3.6vw, 3.8rem); line-height: 1.13; letter-spacing: -.035em; font-weight: 500; overflow-wrap: break-word; }
+main h1.display.display { font-size: clamp(2.4rem, 5.2vw, 5.4rem); }
+main .display i, main .display em { font-style: normal; font-weight: inherit; }
+.quote p { font-size: clamp(2.4rem, 4.8vw, 5rem); line-height: 1.14; letter-spacing: -.035em; }
+.intro__lead { font-size: clamp(1.6rem, 2.8vw, 2.8rem); line-height: 1.35; letter-spacing: -.025em; }
+.copy { line-height: 1.75; }
+.eyebrow { font-size: .75rem; letter-spacing: .14em; }
+.brands .display i { color: var(--gold-pale); }
+.quote span { color: var(--gold-dark); }
+.site-header.is-sticky .nav__action { color: var(--ink); border-color: var(--gold-dark); }
+.site-header.is-sticky :focus-visible { outline-color: var(--wine); }
+.club .button--white { color: var(--paper); background: var(--wine-dark); }
+.club .button--white:hover { color: var(--ink); background: var(--gold-pale); }
+.club__fine a { text-decoration: underline; text-underline-offset: 3px; }
+.nav__links { white-space: nowrap; }
+.nav__link { font-size: .72rem; letter-spacing: .08em; }
+.nav__action { font-size: .7rem; }
+.brand-marquee__list .brand-mark--raffaello-rossi { margin-right: 0; }
+.brand-marquee__list .brand-mark--Souvenir { margin-left: 0; margin-right: 0; }
+.brand-marquee__list { gap: clamp(32px, 4vw, 72px); padding-inline: clamp(16px, 2vw, 36px); }
+/* Pouze zmenšená mezera před Souvenir; nikdy se nepřekryje sousední značka. */
+.brand-marquee__list .brand-mark--Souvenir { margin-left: -10px; }
+.map-card { height: auto; min-height: 0; }
+.map-consent { min-height: 520px; padding: clamp(24px, 4vw, 48px); }
+.map-consent .display.display { font-size: clamp(2rem, 3.2vw, 3rem); }
+.contact__email { display: block; width: fit-content; margin-inline: auto; overflow-wrap: anywhere; }
+.detail dd { min-width: 0; overflow-wrap: anywhere; }
+.footer__top > * { min-width: 0; }
+.form-privacy, .club__fine { font-size: .82rem; }
+body.lightbox-open { overflow: hidden; }
+.menu-open .whatsapp-button { visibility: hidden; }
+@media (max-width: 1024px) {
+  .mobile-menu > a { font-family: var(--sans); font-size: 1.9rem; line-height: 1.2; letter-spacing: -.025em; }
+  .mobile-menu { bottom: auto; }
+  .js .mobile-menu.is-open { bottom: 0; }
+  html:not(.js) .mobile-menu { position: relative; top: var(--header); }
+  main .display.display { font-size: clamp(2rem, 5.5vw, 3.5rem); }
+  main h1.display.display { font-size: clamp(2.3rem, 6.5vw, 4.6rem); }
+  .feature__copy { max-width: none; min-height: 0; padding: 56px 32px; }
+  .map-consent { min-height: 400px; }
+}
+@media (max-width: 560px) {
+  main .display.display { font-size: clamp(1.9rem, 7.5vw, 2.55rem); line-height: 1.18; }
+  main h1.display.display { font-size: clamp(2rem, 8.4vw, 2.9rem); }
+  .quote { padding-block: 80px; }
+  .quote p { font-size: clamp(2.1rem, 9vw, 3rem); }
+  .shell { padding-block: 64px; padding-inline: 20px; }
+  .feature__copy { padding: 48px 24px; }
+  .home-cta .shell, .club__inner { gap: 28px; }
+  .page-hero { padding-inline: 24px; padding-bottom: 48px; }
+  .detail { grid-template-columns: 76px minmax(0, 1fr); gap: 12px; }
+  .detail a { display: inline; line-height: 2; }
+  .visit-actions .button { flex: 1 1 100%; }
+  .map-card, .map-card iframe { min-height: 0; }
+  .map-card { height: auto; }
+  .map-card iframe { height: 380px; }
+  .map-consent { min-height: 0; padding: 32px 22px; }
+  .map-consent .display.display { font-size: 2rem; }
+  .brand-marquee { padding-block: 36px; }
+  .contact__email { font-size: clamp(.95rem, 4.5vw, 1.25rem); letter-spacing: 0; }
+  .footer__bottom { padding-right: 84px; }
+}
+
+/* Rovnoměrně rozmístěné čárky mobilního menu. */
+@media (max-width: 1024px) {
+  .js .menu-toggle { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  .menu-toggle::before, .menu-toggle::after, .menu-toggle span { flex-shrink: 0; }
+}
+.site-header.is-sticky .nav__action { background: var(--paper); }
+.site-header.is-sticky .nav__action:hover { background: var(--gold-pale); }
+.display1 {
+  color: #ecdcae;
+  position: relative;
+  left: 9px;
+}
+/* O butiku / About: fotka a citát bez ručního posouvání a prázdných sekcí. */
+.about-page .page-hero__content { max-width: 1000px; }
+.about-page h1.display { font-size: clamp(2.1rem, 4.7vw, 4.6rem); line-height: 1.1; }
+.about-subtitle { max-width: 650px; margin: 22px 0 0; color: var(--gold-pale); font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.6; }
+.about-story { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; gap: clamp(28px, 5vw, 72px); padding-block: clamp(36px, 5vw, 72px); }
+.about-story > * { min-width: 0; }
+.about-story__copy { max-width: 580px; }
+.about-quote { margin: 0 0 28px; }
+.about-quote blockquote { margin: 0; }
+.about-quote blockquote p { margin: 0; font-family: var(--sans); font-size: clamp(1.25rem, 2.2vw, 2rem); font-weight: 400; line-height: 1.5; letter-spacing: -.015em; }
+.about-quote figcaption { margin-top: 18px; font-size: .9rem; color: #5c5751; }
+.about-gallery { padding-top: 0; }
+.home-gallery > .gallery-teaser { margin-top: 0; }
+@media (max-width: 760px) {
+  .about-story { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .about-story__copy { max-width: none; }
+  .about-quote blockquote p { font-size: clamp(1.2rem, 4.6vw, 1.5rem); }
+  .about-page h1.display { font-size: clamp(1.9rem, 7.3vw, 3.2rem); }
 }

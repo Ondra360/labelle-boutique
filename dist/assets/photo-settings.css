@@ -1,0 +1,226 @@
+/* NASTAVENÍ VŠECH FOTEK — upravuj tento soubor ve VS Code a ulož Ctrl+S.
+   Načítá se po site.css, proto zdejší hodnoty mají přednost.
+   width = šířka; height / min-height = výška / minimální výška.
+   px = pixely; % = část dostupného prostoru; svh = výška obrazovky.
+   cover = vyplní rámeček s ořezem; contain = celý obrázek bez ořezu.
+   object-position / background-position: vodorovná a svislá pozice.
+   50% 50% = střed; 50% 20% posune viditelnou část směrem nahoru.
+   Toto mění zobrazení na webu, nikoli rozlišení původního souboru.
+   Šířku fotek ve sloupcích určuje také grid-template-columns níže.
+   Mobilní hodnoty jsou na konci a mají přednost na malých obrazovkách.
+*/
+
+/* LOGO — assets/logo.png */
+.brand-logo { width: min(224px, 24vw); height: auto; }
+.footer__brand { width: 250px; height: auto; }
+
+/* ÚVODNÍ VIDEO A JEHO NÁHLED — hero-video.mp4 / boutique.jpg.
+   Výška je minimální: obsah může sekci zvětšit. */
+.hero { min-height: max(720px, 100svh); }
+.hero__video-media {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 50%;
+}
+
+/* VELKÉ FOTKY V ZÁHLAVÍ PODSTRÁNEK */
+.page-hero { min-height: 420px; }
+/* O butiku — boutique.jpg */
+.page-hero--boutique { background-size: cover; background-position: 50% 50%; }
+/* Návštěva — gallery-3.jpg */
+.page-hero--visit { background-size: cover; background-position: 50% 50%; }
+/* Kontakt — gallery-4.jpg */
+.page-hero--contact { background-size: cover; background-position: 50% 50%; }
+
+/* PORTRÉT NA ÚVODU — portrait-hq.png.
+   Sloupce: fotka 0.94 dílu, text 1.06 dílu. */
+.feature { grid-template-columns: 0.94fr 1.06fr; }
+.feature__media { min-height: 510px; }
+.feature__media img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 45% 50%;
+}
+
+/* TŘI FOTKY NA ÚVODU — gallery-1, gallery-2, gallery-4.
+   První fotka zabírá oba řádky. Výšky řádků nastav zde. */
+.gallery-teaser {
+  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-rows: 240px 240px;
+  gap: 18px;
+}
+.gallery-teaser img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-teaser img:nth-child(1) { object-position: 50% 50%; }
+.gallery-teaser img:nth-child(2) { object-position: 50% 50%; }
+.gallery-teaser img:nth-child(3) { object-position: 50% 50%; }
+
+/* VELKÁ FOTKA NA STRÁNCE O BUTIKU — gallery-3.jpg */
+.editorial { grid-template-columns: 1.15fr 0.85fr; }
+.editorial__media { min-height: 600px; }
+
+.editorial__media img {
+  top: 50px;
+  left: 100px;
+  display: block; position: relative; width: 30%; height: auto;
+  object-fit: cover; object-position: 90% 30%;
+}
+
+/* GALERIE NA STRÁNCE O BUTIKU — gallery-1 až gallery-4.
+   Výška jednoho řádku; některé fotky zabírají dva řádky. */
+.gallery {
+  grid-template-columns: 1.2fr 0.9fr 1.1fr;
+  grid-auto-rows: clamp(160px, 19vw, 285px);
+  gap: 12px;
+}
+.gallery img { width: 100%; height: 100%; object-fit: cover; }
+.gallery button:nth-child(1) img { object-position: 50% 50%; }
+.gallery button:nth-child(2) img { object-position: 50% 50%; }
+.gallery button:nth-child(3) img { object-position: 50% 50%; }
+.gallery button:nth-child(4) img { object-position: 50% 50%; }
+
+/* ZVĚTŠENÁ FOTKA PO KLIKNUTÍ — maximální rozměry */
+.lightbox img {
+  max-width: min(100%, 950px);
+  max-height: calc(100vh - 70px);
+  object-fit: contain;
+}
+
+/* TABLET A MOBIL — šířka okna do 860 px */
+@media (max-width: 1024px) {
+  .hero { min-height: max(660px, 100svh); }
+  .hero__video-media { object-position: 50% 50%; }
+  .page-hero { min-height: 380px; }
+  .feature, .editorial { grid-template-columns: 1fr; }
+  .feature__media { min-height: 470px; }
+}
+
+/* MALÝ MOBIL — šířka okna do 560 px */
+@media (max-width: 560px) {
+  .brand-logo { width: min(160px, 44vw); }
+  .feature__media { min-height: 410px; }
+  .gallery-teaser { grid-template-rows: 165px 165px; }
+  .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 168px; }
+  .page-hero { min-height: 335px; }
+}
+@media (max-width: 480px) {
+  .hero { min-height: max(640px, 100svh); }
+}
+/* Rozměry fotek na menších obrazovkách. */
+.editorial__media { min-height: 0; }
+.feature__media { position: relative; }
+.feature__media img { position: absolute; inset: 0; }
+@media (max-width: 1024px) {
+  .brand-logo { width: min(190px, 42vw); }
+  .feature__media { min-height: 0; height: clamp(340px, 68vw, 640px); }
+  .editorial__media img { max-height: 680px; object-fit: contain; }
+}
+@media (max-width: 560px) {
+  .hero { min-height: clamp(360px, 72svh, 620px); }
+  .gallery-teaser { gap: 10px; padding: 10px; }
+  .gallery { gap: 10px; grid-auto-rows: clamp(130px, 40vw, 200px); }
+}
+
+/* Mobilní galerie: čtyři rovnoměrné rámečky bez prázdného místa. */
+@media (max-width: 560px) {
+  .gallery { grid-auto-rows: auto; }
+  .gallery button, .gallery button:first-child,
+  .gallery button:nth-child(3), .gallery button:nth-child(4) {
+    grid-row: auto; aspect-ratio: 4 / 5;
+  }
+}
+/* Dvě nové fotky pod původní galerií */
+.extra-photos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.extra-photos img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center;
+  padding: 10px;
+  border: 1px solid rgba(184, 150, 82, 0.45);
+}
+
+/* Ořez nových portrétů ponechá viditelnou tvář i siluetu modelky. */
+.extra-photos img:nth-child(1) { object-position: 50% 56%; }
+.extra-photos img:nth-child(2) { object-position: 50% 26%; }
+
+@media (max-width: 560px) {
+  .extra-photos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+.extra-photos img {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+@media (hover: hover) {
+  .extra-photos img:hover {
+    transform: scale(1.025);
+    box-shadow: 0 12px 28px rgba(11, 27, 23, 0.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .extra-photos img {
+    transition: none;
+  }
+
+  .extra-photos img:hover {
+    transform: none;
+  }
+}
+/* Fotografie vedle citátu na stránce O butiku / About. */
+.about-story__media img { display: block; position: static; width: 100%; max-width: 380px; height: auto; margin-inline: auto; }
+@media (max-width: 760px) {
+  .about-story__media img { max-width: 320px; }
+}
+
+/* Nové fotografie: čtvercové rámečky zachovávají celý záběr. */
+.home-gallery .gallery-teaser {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 18px;
+}
+.home-gallery .gallery-teaser > img,
+.home-gallery .gallery-teaser > img:first-child {
+  grid-row: auto;
+  width: 100%; height: auto;
+  aspect-ratio: 1;
+  object-fit: cover; object-position: center;
+  filter: none;
+}
+/* Prostřední sloupec galerie O butiku tvoří dvě čtvercové fotografie. */
+.about-gallery .gallery {
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1.4fr);
+  grid-template-rows: auto auto;
+  grid-auto-rows: auto;
+}
+.about-gallery .gallery button { min-width: 0; min-height: 0; }
+.about-gallery .gallery button:nth-child(2),
+.about-gallery .gallery button:nth-child(4) { aspect-ratio: 1; }
+.about-gallery .gallery img { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Horní fotografie stránky O butiku. */
+.page-hero--boutique {
+  background-image: linear-gradient(90deg, rgba(0,0,0,.76), rgba(0,0,0,.25)), url("./interier-kozesiny.jpg");
+  background-size: cover;
+  background-position: center 46%;
+}
+@media (max-width: 680px) {
+  .home-gallery .gallery-teaser { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .home-gallery .gallery-teaser > img:first-child { grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .about-gallery .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about-gallery .gallery button,
+  .about-gallery .gallery button:first-child,
+  .about-gallery .gallery button:nth-child(3),
+  .about-gallery .gallery button:nth-child(4) { grid-row: auto; aspect-ratio: 1; }
+  .about-gallery .gallery button:first-child img { object-position: 50% 24%; }
+  .page-hero--boutique { background-position: 55% center; }
+}

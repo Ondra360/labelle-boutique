@@ -25,6 +25,7 @@
     menu.setAttribute("aria-hidden", String(!open));
     menu.inert = !open;
     document.body.classList.toggle("menu-open", open);
+    document.querySelectorAll("main, footer, .whatsapp-button").forEach((element) => { element.inert = open; });
     if (open) {
       menuTrigger = document.activeElement;
       window.setTimeout(() => menu.querySelector("a")?.focus(), 0);
@@ -49,10 +50,16 @@
       }
       const playAttempt = video.play();
       playAttempt?.catch(() => {
-        // The poster stays visible if a browser blocks muted autoplay.
+        // The poster stays visible until the visitor interacts with the page.
       });
     };
+
     updatePlayback();
+    video.addEventListener("canplay", updatePlayback, { once: true });
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) updatePlayback();
+    });
+    window.addEventListener("pointerdown", updatePlayback, { once: true, passive: true });
     motionPreference.addEventListener("change", updatePlayback);
   });
 
@@ -94,7 +101,7 @@
       }
     });
     window
-      .matchMedia("(min-width: 861px)")
+      .matchMedia("(min-width: 1025px)")
       .addEventListener("change", (event) => {
         if (event.matches) setMenu(false);
       });
@@ -123,7 +130,8 @@
     if (!lightbox || !lightboxImage) return;
     lightbox.classList.remove("is-open");
     lightbox.setAttribute("aria-hidden", "true");
-    lightboxImage.src = "";
+    lightboxImage.removeAttribute("src");
+    document.body.classList.remove("lightbox-open");
     if (lastFocusedElement?.isConnected) lastFocusedElement.focus();
     lastFocusedElement = null;
   };
@@ -135,6 +143,7 @@
       lightboxImage.src = button.dataset.galleryImage || image.src;
       lightboxImage.alt = image.alt;
       lightbox.classList.add("is-open");
+      document.body.classList.add("lightbox-open");
       lightbox.setAttribute("aria-hidden", "false");
       requestAnimationFrame(() => lightboxClose?.focus());
     }),
@@ -151,6 +160,12 @@
         event.preventDefault();
         setMenu(false, true);
       }
+    }
+    if (event.key === "Tab" && toggle?.getAttribute("aria-expanded") === "true") {
+      const focusable = [toggle, ...menu.querySelectorAll("a[href]")];
+      const current = focusable.indexOf(document.activeElement);
+      event.preventDefault();
+      focusable[(current + (event.shiftKey ? -1 : 1) + focusable.length) % focusable.length].focus();
     }
     if (event.key === "Tab" && lightbox?.classList.contains("is-open")) {
       event.preventDefault();
